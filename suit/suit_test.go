@@ -1,7 +1,6 @@
 package suit
 
 import (
-	"sort"
 	"testing"
 )
 
@@ -36,21 +35,5 @@ func TestSuitToString(t *testing.T) {
 	s = Club - 1
 	if s.String() != "" {
 		t.Errorf("expected (Club - 1).String() to return '' but it returned '%s'", s)
-	}
-}
-
-func TestSuitSort(t *testing.T) {
-	suits := []Suit{}
-
-	for s := Spade; s >= Club; s-- {
-		suits = append(suits, s)
-	}
-
-	sort.Sort(Suits(suits))
-
-	for s := Club; s <= Spade; s++ {
-		if suits[s] != s {
-			t.Errorf("expected %s in %v at %d but found %s", s, suits, s, suits[s])
-		}
 	}
 }

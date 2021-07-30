@@ -16,14 +16,6 @@ func (c *Card) String() string {
 	return fmt.Sprintf("Card{%s,%s}", c.Suit, c.Rank)
 }
 
-type Cards []Card
-
-func (c Cards) Len() int      { return len(c) }
-func (c Cards) Swap(i, j int) { c[i], c[j] = c[j], c[i] }
-func (c Cards) Less(i, j int) bool {
-	return c[i].Suit < c[j].Suit || (c[i].Suit == c[j].Suit && c[i].Rank < c[j].Rank)
-}
-
 func CreateCard(s suit.Suit, r rank.Rank) (*Card, error) {
 	if s < suit.Club || s > suit.Spade {
 		return nil, fmt.Errorf("invaid suit number: %d", s)
@@ -36,8 +28,8 @@ func CreateCard(s suit.Suit, r rank.Rank) (*Card, error) {
 	return &Card{s, r}, nil
 }
 
-func CreateDeck() Cards {
-	cards := Cards{}
+func CreateDeck() []Card {
+	cards := []Card{}
 
 	for s := suit.Club; s <= suit.Spade; s++ {
 		for r := rank.Ace; r <= rank.King; r++ {

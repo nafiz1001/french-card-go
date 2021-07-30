@@ -1,7 +1,6 @@
 package rank
 
 import (
-	"sort"
 	"strconv"
 	"testing"
 )
@@ -55,20 +54,5 @@ func TestRankToString(t *testing.T) {
 	rank = Ace - 1
 	if rank.String() != "" {
 		t.Errorf("expected (Ace - 1).String() to return '' but it returned '%s'", rank)
-	}
-}
-
-func TestRankSort(t *testing.T) {
-	ranks := []Rank{}
-	for r := King; r >= Ace; r-- {
-		ranks = append(ranks, r)
-	}
-
-	sort.Sort(Ranks(ranks))
-
-	for r := Ace; r <= King; r++ {
-		if ranks[r-1] != r {
-			t.Errorf("expected %s at %d but found %s", Rank(r), r, ranks[r])
-		}
 	}
 }

@@ -19,9 +19,3 @@ func (s Suit) String() string {
 
 	return suitsToStr[s]
 }
-
-type Suits []Suit
-
-func (s Suits) Len() int           { return len(s) }
-func (s Suits) Swap(i, j int)      { s[i], s[j] = s[j], s[i] }
-func (s Suits) Less(i, j int) bool { return s[i] < s[j] }

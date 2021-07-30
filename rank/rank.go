@@ -34,9 +34,3 @@ func (r Rank) String() string {
 		return rankToStr[r]
 	}
 }
-
-type Ranks []Rank
-
-func (r Ranks) Len() int           { return len(r) }
-func (r Ranks) Swap(i, j int)      { r[i], r[j] = r[j], r[i] }
-func (r Ranks) Less(i, j int) bool { return r[i] < r[j] }
