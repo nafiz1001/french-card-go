@@ -12,11 +12,11 @@ type Card struct {
 	Rank rank.Rank
 }
 
-func (c *Card) String() string {
+func (c Card) String() string {
 	return fmt.Sprintf("Card{%s,%s}", c.Suit, c.Rank)
 }
 
-func (c *Card) Rune() rune {
+func (c Card) Rune() rune {
 	if _, err := CreateCard(c.Suit, c.Rank); err == nil {
 		return rune(0x1F0A0 + int(c.Rank) + int(suit.Spade-c.Suit)*0x10)
 	} else {
