@@ -44,6 +44,8 @@ type Card struct {
 ```
 ## Unicode
 
+`go run cmd/print_unicodes.go`
+
 ```
 Club    ♣
 Diamond ♦
