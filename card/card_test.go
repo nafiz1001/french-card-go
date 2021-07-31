@@ -56,6 +56,39 @@ func TestCardString(t *testing.T) {
 			t.Errorf("expected c.String() to return %s but it returned %s", expectation, c.String())
 		}
 	}
+
+	invalidArgs := []Card{
+		{suit.Spade + 1, rank.Ace},
+		{suit.Club - 1, rank.Ace},
+		{suit.Club, rank.King + 1},
+		{suit.Club, rank.Ace - 1},
+	}
+
+	var c Card
+
+	c = invalidArgs[0]
+	expectation := "Card{,Ace}"
+	if c.String() != expectation {
+		t.Errorf("expected c.String() to return %s but it returned %s", expectation, c.String())
+	}
+
+	c = invalidArgs[1]
+	expectation = "Card{,Ace}"
+	if c.String() != expectation {
+		t.Errorf("expected c.String() to return %s but it returned %s", expectation, c.String())
+	}
+
+	c = invalidArgs[2]
+	expectation = "Card{Club,}"
+	if c.String() != expectation {
+		t.Errorf("expected c.String() to return %s but it returned %s", expectation, c.String())
+	}
+
+	c = invalidArgs[3]
+	expectation = "Card{Club,}"
+	if c.String() != expectation {
+		t.Errorf("expected c.String() to return %s but it returned %s", expectation, c.String())
+	}
 }
 
 func TestCardRune(t *testing.T) {
