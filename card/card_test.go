@@ -13,24 +13,24 @@ func TestCreateCard(t *testing.T) {
 		for r := rank.Ace; r <= rank.King; r++ {
 			if c, err := CreateCard(s, r); c == nil || err != nil {
 				t.Errorf("expected to successfully create a card with suit %s and rank %s", s, r)
+			} else if c.Suit != s || c.Rank != r {
+				t.Errorf("expected to create Card{%s,%s}, but created Card{%s,%s}", s, r, c.Suit, c.Rank)
 			}
 		}
 	}
 
-	if c, err := CreateCard(suit.Spade+1, rank.Ace); c != nil || err == nil {
-		t.Errorf("expected to fail create a card with suit %d and rank %s", suit.Spade+1, rank.Ace)
+	invalidArgs := []Card{
+		Card{suit.Spade + 1, rank.Ace},
+		Card{suit.Club - 1, rank.Ace},
+		Card{suit.Club, rank.King + 1},
+		Card{suit.Club, rank.Ace - 1},
 	}
 
-	if c, err := CreateCard(suit.Club-1, rank.Ace); c != nil || err == nil {
-		t.Errorf("expected to fail create a card with suit %d and rank %s", suit.Club-1, rank.Ace)
-	}
-
-	if c, err := CreateCard(suit.Club, rank.King+1); c != nil || err == nil {
-		t.Errorf("expected to fail create a card with suit %s and rank %d", suit.Club, rank.King+1)
-	}
-
-	if c, err := CreateCard(suit.Club, rank.Ace-1); c != nil || err == nil {
-		t.Errorf("expected to fail create a card with suit %s and rank %d", suit.Club, rank.Ace-1)
+	for i := range invalidArgs {
+		s, r := invalidArgs[i].Suit, invalidArgs[i].Rank
+		if c, err := CreateCard(s, r); c != nil || err == nil {
+			t.Errorf("expected to fail create a card with suit #%d and rank #%d", s, r)
+		}
 	}
 }
 
