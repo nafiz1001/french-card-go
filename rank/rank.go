@@ -1,7 +1,5 @@
 package rank
 
-import "strconv"
-
 type Rank int
 
 const (
@@ -23,14 +21,19 @@ const (
 func (r Rank) String() string {
 	rankToStr := map[Rank]string{
 		Ace:   "Ace",
+		Two:   "2",
+		Three: "3",
+		Four:  "4",
+		Five:  "5",
+		Six:   "6",
+		Seven: "7",
+		Eight: "8",
+		Nine:  "9",
+		Ten:   "10",
 		Jack:  "Jack",
 		Queen: "Queen",
 		King:  "King",
 	}
 
-	if Ace < r && r < Jack {
-		return strconv.Itoa(int(r))
-	} else {
-		return rankToStr[r]
-	}
+	return rankToStr[r]
 }
