@@ -95,7 +95,7 @@ func TestCardRune(t *testing.T) {
 	cards := CreateDeck()
 
 	for _, c := range cards {
-		want := rune(0x1F0A1 + int(c.Rank) + int(suit.Spade-c.Suit)*0x10)
+		want := rune(0x1F0A0 + int(c.Rank) + int(suit.Spade-c.Suit)*0x10)
 		if c.Rune() != want {
 			t.Errorf("expected c.Rune() to return %x but it returned %x", want, c.Rune())
 		}

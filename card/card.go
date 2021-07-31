@@ -18,7 +18,7 @@ func (c *Card) String() string {
 
 func (c *Card) Rune() rune {
 	if _, err := CreateCard(c.Suit, c.Rank); err == nil {
-		return rune(0x1F0A1 + int(c.Rank) + int(suit.Spade-c.Suit)*0x10)
+		return rune(0x1F0A0 + int(c.Rank) + int(suit.Spade-c.Suit)*0x10)
 	} else {
 		return rune(0)
 	}
