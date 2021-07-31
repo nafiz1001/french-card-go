@@ -20,10 +20,10 @@ func TestCreateCard(t *testing.T) {
 	}
 
 	invalidArgs := []Card{
-		Card{suit.Spade + 1, rank.Ace},
-		Card{suit.Club - 1, rank.Ace},
-		Card{suit.Club, rank.King + 1},
-		Card{suit.Club, rank.Ace - 1},
+		{suit.Spade + 1, rank.Ace},
+		{suit.Club - 1, rank.Ace},
+		{suit.Club, rank.King + 1},
+		{suit.Club, rank.Ace - 1},
 	}
 
 	for i := range invalidArgs {
@@ -54,6 +54,30 @@ func TestCardString(t *testing.T) {
 		expectation := fmt.Sprintf("Card{%s,%s}", c.Suit, c.Rank)
 		if c.String() != expectation {
 			t.Errorf("expected c.String() to return %s but it returned %s", expectation, c.String())
+		}
+	}
+}
+
+func TestCardRune(t *testing.T) {
+	cards := CreateDeck()
+
+	for _, c := range cards {
+		want := rune(0x1F0A1 + int(c.Rank) + int(suit.Spade-c.Suit)*0x10)
+		if c.Rune() != want {
+			t.Errorf("expected c.Rune() to return %x but it returned %x", want, c.Rune())
+		}
+	}
+
+	invalidArgs := []Card{
+		{suit.Spade + 1, rank.Ace},
+		{suit.Club - 1, rank.Ace},
+		{suit.Club, rank.King + 1},
+		{suit.Club, rank.Ace - 1},
+	}
+
+	for _, c := range invalidArgs {
+		if c.Rune() != rune(0) {
+			t.Errorf("expected c.Rune() to return %x but it returned %x", rune(0), c.Rune())
 		}
 	}
 }
