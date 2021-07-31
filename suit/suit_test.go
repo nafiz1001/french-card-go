@@ -5,27 +5,22 @@ import (
 )
 
 func TestSuitString(t *testing.T) {
+	suitsToStr := map[Suit]string{
+		Club:    "Club",
+		Diamond: "Diamond",
+		Heart:   "Heart",
+		Spade:   "Spade",
+	}
+
+	suitsToName := suitsToStr
+
+	for s := range suitsToStr {
+		if s.String() != suitsToStr[s] {
+			t.Errorf("expected %s.String() to return '%s' but it returned '%s'", suitsToName[s], suitsToStr[s], s)
+		}
+	}
+
 	var s Suit
-
-	s = Club
-	if s.String() != "Club" {
-		t.Errorf("expected Club.String() to return 'Club' but it returned '%s'", s)
-	}
-
-	s = Diamond
-	if s.String() != "Diamond" {
-		t.Errorf("expected Diamond.String() to return 'Diamond' but it returned '%s'", s)
-	}
-
-	s = Heart
-	if s.String() != "Heart" {
-		t.Errorf("expected Heart.String() to return 'Heart' but it returned '%s'", s)
-	}
-
-	s = Spade
-	if s.String() != "Spade" {
-		t.Errorf("expected Spade.String() to return 'Spade' but it returned '%s'", s)
-	}
 
 	s = Spade + 1
 	if s.String() != "" {
