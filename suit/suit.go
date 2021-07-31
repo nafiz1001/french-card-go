@@ -19,3 +19,14 @@ func (s Suit) String() string {
 
 	return suitsToStr[s]
 }
+
+func (s Suit) Rune() rune {
+	suitsToRune := map[Suit]rune{
+		Club:    '\u2663',
+		Diamond: '\u2666',
+		Heart:   '\u2665',
+		Spade:   '\u2660',
+	}
+
+	return suitsToRune[s]
+}
