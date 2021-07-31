@@ -33,8 +33,7 @@ func CreateDeck() []Card {
 
 	for s := suit.Club; s <= suit.Spade; s++ {
 		for r := rank.Ace; r <= rank.King; r++ {
-			c, _ := CreateCard(s, r)
-			cards = append(cards, *c)
+			cards = append(cards, Card{s, r})
 		}
 	}
 
