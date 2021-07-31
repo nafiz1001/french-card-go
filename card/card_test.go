@@ -1,7 +1,10 @@
 package card
 
 import (
+	"bufio"
 	"fmt"
+	"log"
+	"os"
 	"testing"
 
 	"github.com/nafiz1001/french-card-go/rank"
@@ -94,8 +97,19 @@ func TestCardString(t *testing.T) {
 func TestCardRune(t *testing.T) {
 	cards := CreateDeck()
 
+	file, err := os.Open("cards.txt")
+	if err != nil {
+		log.Fatal("could not open to read cards.txt")
+	}
+	defer file.Close()
+	scanner := bufio.NewScanner(file)
+
 	for _, c := range cards {
-		want := rune(0x1F0A0 + int(c.Rank) + int(suit.Spade-c.Suit)*0x10)
+		if !scanner.Scan() {
+			log.Fatal("ran out of cards to test against")
+		}
+
+		want := []rune(scanner.Text())[0]
 		if c.Rune() != want {
 			t.Errorf("expected c.Rune() to return %x but it returned %x", want, c.Rune())
 		}
