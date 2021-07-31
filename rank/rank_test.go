@@ -1,19 +1,12 @@
 package rank
 
 import (
-	"strconv"
 	"testing"
 )
 
 func TestRankString(t *testing.T) {
-	var rank Rank
-
-	rank = Ace
-	if rank.String() != "Ace" {
-		t.Errorf("expected Ace.String() to return 'Ace' but it returned '%s'", rank)
-	}
-
-	intToWord := map[Rank]string{
+	rankToName := map[Rank]string{
+		Ace:   "Ace",
 		Two:   "Two",
 		Three: "Three",
 		Four:  "Four",
@@ -23,28 +16,34 @@ func TestRankString(t *testing.T) {
 		Eight: "Eight",
 		Nine:  "Nine",
 		Ten:   "Ten",
+		Jack:  "Jack",
+		Queen: "Queen",
+		King:  "King",
 	}
 
-	for rank = Two; rank <= Ten; rank++ {
-		if rank.String() != strconv.Itoa(int(rank)) {
-			t.Errorf("expected %s.String() to return '%d' but it returned '%s'", intToWord[rank], int(rank), rank)
+	rankToStr := map[Rank]string{
+		Ace:   "Ace",
+		Two:   "2",
+		Three: "3",
+		Four:  "4",
+		Five:  "5",
+		Six:   "6",
+		Seven: "7",
+		Eight: "8",
+		Nine:  "9",
+		Ten:   "10",
+		Jack:  "Jack",
+		Queen: "Queen",
+		King:  "King",
+	}
+
+	for rank := range rankToName {
+		if rank.String() != rankToStr[rank] {
+			t.Errorf("expected %s.String() to return '%s' but it returned '%s'", rankToName[rank], rankToStr, rank)
 		}
 	}
 
-	rank = Jack
-	if rank.String() != "Jack" {
-		t.Errorf("expected Jack.String() to return 'Ace' but it returned '%s'", rank)
-	}
-
-	rank = Queen
-	if rank.String() != "Queen" {
-		t.Errorf("expected Queen.String() to return 'Queen' but it returned '%s'", rank)
-	}
-
-	rank = King
-	if rank.String() != "King" {
-		t.Errorf("expected King.String() to return 'King' but it returned '%s'", rank)
-	}
+	var rank Rank
 
 	rank = King + 1
 	if rank.String() != "" {
