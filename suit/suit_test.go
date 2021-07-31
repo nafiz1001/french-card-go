@@ -35,10 +35,10 @@ func TestSuitString(t *testing.T) {
 
 func TestSuitRune(t *testing.T) {
 	suitsToRune := map[Suit]rune{
-		Club:    '\u2663',
-		Diamond: '\u2666',
-		Heart:   '\u2665',
-		Spade:   '\u2660',
+		Club:    '♣',
+		Diamond: '♦',
+		Heart:   '♥',
+		Spade:   '♠',
 	}
 
 	suitsToName := map[Suit]string{
