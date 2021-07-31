@@ -4,7 +4,7 @@ import (
 	"testing"
 )
 
-func TestSuitToString(t *testing.T) {
+func TestSuitString(t *testing.T) {
 	var s Suit
 
 	s = Club

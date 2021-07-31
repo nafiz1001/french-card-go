@@ -5,7 +5,7 @@ import (
 	"testing"
 )
 
-func TestRankToString(t *testing.T) {
+func TestRankString(t *testing.T) {
 	var rank Rank
 
 	rank = Ace
@@ -27,7 +27,7 @@ func TestRankToString(t *testing.T) {
 
 	for rank = Two; rank <= Ten; rank++ {
 		if rank.String() != strconv.Itoa(int(rank)) {
-			t.Errorf("expected %s.toString() to return '%d' but it returned '%s'", intToWord[rank], int(rank), rank)
+			t.Errorf("expected %s.String() to return '%d' but it returned '%s'", intToWord[rank], int(rank), rank)
 		}
 	}
 

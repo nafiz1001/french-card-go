@@ -47,7 +47,7 @@ func TestCreateDeck(t *testing.T) {
 	}
 }
 
-func TestCardToString(t *testing.T) {
+func TestCardString(t *testing.T) {
 	cards := CreateDeck()
 
 	for _, c := range cards {
