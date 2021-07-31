@@ -111,7 +111,7 @@ func TestCardRune(t *testing.T) {
 
 		want := []rune(scanner.Text())[0]
 		if c.Rune() != want {
-			t.Errorf("expected c.Rune() to return %x but it returned %x", want, c.Rune())
+			t.Errorf("expected %s.Rune() to return %x but it returned %x", c, want, c.Rune())
 		}
 	}
 
@@ -124,7 +124,7 @@ func TestCardRune(t *testing.T) {
 
 	for _, c := range invalidArgs {
 		if c.Rune() != rune(0) {
-			t.Errorf("expected c.Rune() to return %x but it returned %x", rune(0), c.Rune())
+			t.Errorf("expected %s.Rune() to return %x but it returned %x", c, rune(0), c.Rune())
 		}
 	}
 }
