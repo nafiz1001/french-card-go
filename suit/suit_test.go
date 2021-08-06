@@ -1,6 +1,9 @@
 package suit
 
 import (
+	"bufio"
+	"log"
+	"os"
 	"testing"
 )
 
@@ -34,23 +37,29 @@ func TestSuitString(t *testing.T) {
 }
 
 func TestSuitRune(t *testing.T) {
-	suitsToRune := map[Suit]rune{
-		Club:    '♣',
-		Diamond: '♦',
-		Heart:   '♥',
-		Spade:   '♠',
+	suitsToName := []string{
+		"Club",
+		"Diamond",
+		"Heart",
+		"Spade",
 	}
 
-	suitsToName := map[Suit]string{
-		Club:    "Club",
-		Diamond: "Diamond",
-		Heart:   "Heart",
-		Spade:   "Spade",
+	file, err := os.Open("suits.txt")
+	if err != nil {
+		log.Fatal("could not open to read cards.txt")
 	}
+	defer file.Close()
+	scanner := bufio.NewScanner(file)
 
-	for s := range suitsToRune {
-		if s.Rune() != suitsToRune[s] {
-			t.Errorf("expected %s.Rune() to return '%x' but it returned '%x'", suitsToName[s], suitsToRune[s], s.Rune())
+	for i, n := range suitsToName {
+		s := Suit(i)
+		if !scanner.Scan() {
+			log.Fatal("ran out of cards to test against")
+		}
+
+		want := []rune(scanner.Text())[0]
+		if s.Rune() != want {
+			t.Errorf("expected %s.Rune() to return '%x' but it returned '%x'", n, want, s.Rune())
 		}
 	}
 

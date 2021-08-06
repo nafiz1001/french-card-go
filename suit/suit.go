@@ -22,10 +22,10 @@ func (s Suit) String() string {
 
 func (s Suit) Rune() rune {
 	suitsToRune := map[Suit]rune{
-		Club:    '♣',
-		Diamond: '♦',
-		Heart:   '♥',
-		Spade:   '♠',
+		Club:    '\u2663',
+		Diamond: '\u2666',
+		Heart:   '\u2665',
+		Spade:   '\u2660',
 	}
 
 	return suitsToRune[s]
