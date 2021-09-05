@@ -26,7 +26,7 @@ func (c Card) Rune() rune {
 
 func CreateCard(s suit.Suit, r rank.Rank) (*Card, error) {
 	if s < suit.Club || s > suit.Spade {
-		return nil, fmt.Errorf("invaid suit number: %d", s)
+		return nil, fmt.Errorf("invalid suit number: %d", s)
 	}
 
 	if r < rank.Ace || r > rank.King {
