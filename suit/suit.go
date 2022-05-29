@@ -9,6 +9,7 @@ const (
 	Spade
 )
 
+// Suit converts a Suit to a string
 func (s Suit) String() string {
 	suitsToStr := map[Suit]string{
 		Club:    "Club",
@@ -20,6 +21,8 @@ func (s Suit) String() string {
 	return suitsToStr[s]
 }
 
+// Rune converts a Suit to its rune/unicode
+// representation
 func (s Suit) Rune() rune {
 	suitsToRune := map[Suit]rune{
 		Club:    '\u2663',

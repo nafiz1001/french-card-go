@@ -18,6 +18,7 @@ const (
 	King
 )
 
+// String converts a Rank to a string
 func (r Rank) String() string {
 	rankToStr := map[Rank]string{
 		Ace:   "Ace",
