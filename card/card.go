@@ -21,7 +21,12 @@ func (c Card) String() string {
 // rune/unicode representation
 func (c Card) Rune() rune {
 	if _, err := CreateCard(c.Suit, c.Rank); err == nil {
-		return rune(0x1F0A0 + int(c.Rank) + int(suit.Spade-c.Suit)*0x10)
+		skipKnight := 0
+		if c.Rank >= rank.Queen {
+			skipKnight = 1
+		}
+
+		return rune(0x1F0A0 + int(c.Rank) + int(suit.Spade-c.Suit)*0x10 + skipKnight)
 	} else {
 		return rune(0)
 	}
