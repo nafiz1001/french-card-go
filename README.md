@@ -2,7 +2,7 @@
 
 # french-card-go
 
-Just a set of structs and functions to represent [french-suited playing cards](https://en.wikipedia.org/wiki/French-suited_playing_cards)
+A set of structs and functions to represent [french-suited playing cards](https://en.wikipedia.org/wiki/French-suited_playing_cards)
 
 # Features
 
